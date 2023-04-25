@@ -1,5 +1,8 @@
 name: Frontend Publish
 
+env:
+  VITE_BASE_URL: ${{ vars.VITE_BASE_URL }}
+
 on:
   push:
     branches:
