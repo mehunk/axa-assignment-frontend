@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "name": "automobile",
+    "description": "product for automobile",
+    "status": 1,
+    "vehicleType": 1
+  },
+  {
+    "id": 2,
+    "name": "bike",
+    "description": "product for bile",
+    "status": 1,
+    "vehicleType": 2
+  }
+]

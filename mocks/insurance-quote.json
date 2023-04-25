@@ -1,0 +1,15 @@
+{
+  "paid": false,
+  "id": 7,
+  "customerName": "Jim",
+  "customerPhone": "1",
+  "customerEmail": "jim@163.com",
+  "customerAge": 37,
+  "startDate": "2023-04-18",
+  "vehicleTypeId": 1,
+  "productId": 1,
+  "policyNumber": "3f3826a1-aed7-4041-91fd-f7f138b17439",
+  "endDate": "2023-05-18",
+  "vehicleModel": "BMW",
+  "licensePlate": "1"
+}

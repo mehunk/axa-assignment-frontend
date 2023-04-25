@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "skipLibCheck": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true
+  },
+  "include": [
+    "vite.config.ts",
+    "mocks/**/*.ts",
+    "mocks/**/*.json"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "id": 1,
+  "name": "basic",
+  "description": null,
+  "status": 1,
+  "deductible": 15,
+  "policyLimit": 1,
+  "days": 30,
+  "premium": 100,
+  "vehicleTypeId": 1
+}

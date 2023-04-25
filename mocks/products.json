@@ -1,0 +1,35 @@
+[
+  {
+    "id": 1,
+    "name": "basic",
+    "description": null,
+    "status": 1,
+    "deductible": 15,
+    "policyLimit": 1,
+    "days": 30,
+    "premium": 100,
+    "vehicleTypeId": 1
+  },
+  {
+    "id": 2,
+    "name": "premium",
+    "description": null,
+    "status": 1,
+    "deductible": 20,
+    "policyLimit": 1,
+    "days": 100,
+    "premium": 200,
+    "vehicleTypeId": 1
+  },
+  {
+    "id": 3,
+    "name": "empire",
+    "description": null,
+    "status": 1,
+    "deductible": 25,
+    "policyLimit": 1,
+    "days": 365,
+    "premium": 300,
+    "vehicleTypeId": 1
+  }
+]
