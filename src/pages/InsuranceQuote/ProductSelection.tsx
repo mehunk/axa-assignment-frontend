@@ -19,26 +19,30 @@ interface Props {
   onNextStep: () => void
 }
 
-function ProductSelection ({ products, selectedProductId, onSelectProduct, onNextStep }: Props): JSX.Element {
+function ProductSelection({
+  products,
+  selectedProductId,
+  onSelectProduct,
+  onNextStep
+}: Props): JSX.Element {
   return (
     <>
       <Title>Please select a product</Title>
       <Row gutter={16}>
-        {
-          products.map((product) => (
-            <Col
-              span={8}
-              key={product.id}
+        {products.map((product) => (
+          <Col span={8} key={product.id}>
+            <div
+              onClick={() => {
+                onSelectProduct(product.id)
+              }}
             >
-              <div onClick={() => { onSelectProduct(product.id) }}>
-                <ProductOption
-                  product={product}
-                  selected={product.id === selectedProductId}
-                />
-              </div>
-            </Col>
-          ))
-        }
+              <ProductOption
+                product={product}
+                selected={product.id === selectedProductId}
+              />
+            </div>
+          </Col>
+        ))}
       </Row>
       <NextStepButton
         type="primary"

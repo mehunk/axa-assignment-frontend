@@ -9,7 +9,13 @@ interface Props {
   onSubmit: () => void
 }
 
-function InsuranceQuotePreview ({ vehicleType, product, form, onSubmit, loading }: Props): JSX.Element {
+function InsuranceQuotePreview({
+  vehicleType,
+  product,
+  form,
+  onSubmit,
+  loading
+}: Props): JSX.Element {
   const items = [
     {
       label: 'Vehicle Type',
@@ -65,9 +71,7 @@ function InsuranceQuotePreview ({ vehicleType, product, form, onSubmit, loading 
     >
       {items.map((item) => (
         <Form.Item key={item.label} label={item.label}>
-          <span className="ant-form-text">
-            {item.value}
-          </span>
+          <span className="ant-form-text">{item.value}</span>
         </Form.Item>
       ))}
       <Form.Item wrapperCol={{ offset: 8, span: 16 }}>

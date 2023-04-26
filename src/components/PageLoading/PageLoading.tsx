@@ -8,7 +8,7 @@ const LoadingPage = styled.div`
   align-items: center;
 `
 
-function PageLoading (): JSX.Element {
+function PageLoading(): JSX.Element {
   return (
     <LoadingPage>
       <Spin size="large" />

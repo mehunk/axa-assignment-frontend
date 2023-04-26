@@ -17,7 +17,7 @@ const StyledMainContent = styled.div`
 
 const queryClient = new QueryClient()
 
-function Main (): JSX.Element {
+function Main(): JSX.Element {
   return (
     <QueryClientProvider client={queryClient}>
       <StyledMain>

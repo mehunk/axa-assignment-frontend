@@ -16,7 +16,13 @@ const disabledDate: RangePickerProps['disabledDate'] = (current) => {
   return current < dayjs().endOf('day')
 }
 
-function BasicForm ({ onChange, fields, onNextStep, form, vehicleTypes }: Props): JSX.Element {
+function BasicForm({
+  onChange,
+  fields,
+  onNextStep,
+  form,
+  vehicleTypes
+}: Props): JSX.Element {
   const nextStep = async (): Promise<void> => {
     try {
       await form.validateFields()
@@ -92,7 +98,12 @@ function BasicForm ({ onChange, fields, onNextStep, form, vehicleTypes }: Props)
         name="customerAge"
         rules={[
           { required: true, message: 'Please input your age!' },
-          { type: 'number', min: 18, max: 100, message: 'Age must be between 18 and 100!' }
+          {
+            type: 'number',
+            min: 18,
+            max: 100,
+            message: 'Age must be between 18 and 100!'
+          }
         ]}
       >
         <InputNumber min={18} max={100} />
@@ -123,7 +134,12 @@ function BasicForm ({ onChange, fields, onNextStep, form, vehicleTypes }: Props)
       <Form.Item
         label="Start Date"
         name="startDate"
-        rules={[{ required: true, message: 'Please select the start date for the insurance quote!' }]}
+        rules={[
+          {
+            required: true,
+            message: 'Please select the start date for the insurance quote!'
+          }
+        ]}
       >
         <DatePicker disabledDate={disabledDate} />
       </Form.Item>

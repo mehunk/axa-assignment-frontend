@@ -6,10 +6,9 @@ const instance = axios.create({
 })
 
 instance.interceptors.response.use(
-  response => response,
-  error => {
+  (response) => response,
+  (error) => {
     const { response } = error
-    // eslint-disable-next-line
     if (!response) {
       void message.error('Network Error')
     } else {

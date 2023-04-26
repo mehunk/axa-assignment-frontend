@@ -13,41 +13,60 @@ const StyledInsuranceQuotePayment = styled.div`
   align-items: center;
 `
 
-function InsuranceQuotePayment (): JSX.Element {
-  const params = useParams<{ id: string }>()
+function InsuranceQuotePayment(): JSX.Element {
+  const { id } = useParams<{ id: string }>()
+  return InsuranceQuotePaymentCell({ insuranceQuoteId: parseInt(id as string) })
+}
+
+export function InsuranceQuotePaymentCell({
+  insuranceQuoteId
+}: {
+  insuranceQuoteId: number
+}): JSX.Element {
   const [paid, setPaid] = useState<boolean>(false)
-  const { isLoading, isSuccess, data: insuranceQuote } = useQuery({
+  const {
+    isLoading,
+    isError,
+    data: insuranceQuote
+  } = useQuery({
     queryKey: ['insuranceQuote'],
-    queryFn: async () => await getInsuranceQuote(+(params.id as string))
+    queryFn: async () => await getInsuranceQuote(insuranceQuoteId)
   })
 
   if (isLoading) {
     return <PageLoading />
   }
 
-  if (isSuccess) {
+  if (isError) {
     return (
-      <StyledInsuranceQuotePayment>
-        {paid
-          ? (
-          <Result
-            status="success"
-            title="Successfully Paid for Insurance Quote!"
-            subTitle={`Policy number: ${insuranceQuote.policyNumber}. Your insurance quote is about to take effect, please wait.`}
-          />
-            )
-          : <Button type="primary" onClick={() => { setPaid(true) }}>Fake Pay</Button>
-        }
-
-      </StyledInsuranceQuotePayment>
+      <Result
+        status="404"
+        title="404"
+        subTitle="Sorry, something went wrong."
+      />
     )
-  } else {
-    return <Result
-      status="404"
-      title="404"
-      subTitle="Sorry, something went wrong."
-    />
   }
+
+  return (
+    <StyledInsuranceQuotePayment>
+      {paid ? (
+        <Result
+          status="success"
+          title="Successfully Paid for Insurance Quote!"
+          subTitle={`Policy number: ${insuranceQuote.policyNumber}. Your insurance quote is about to take effect, please wait.`}
+        />
+      ) : (
+        <Button
+          type="primary"
+          onClick={() => {
+            setPaid(true)
+          }}
+        >
+          Fake Pay
+        </Button>
+      )}
+    </StyledInsuranceQuotePayment>
+  )
 }
 
 export default InsuranceQuotePayment

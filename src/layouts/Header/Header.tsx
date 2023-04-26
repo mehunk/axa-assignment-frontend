@@ -9,7 +9,7 @@ const LogoPlaceholder = styled.div`
   background: rgba(255, 255, 255, 0.2);
 `
 
-function Header (): JSX.Element {
+function Header(): JSX.Element {
   return (
     <FixedHeader>
       <LogoPlaceholder />

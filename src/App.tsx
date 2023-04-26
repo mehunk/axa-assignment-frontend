@@ -3,7 +3,7 @@ import { Layout, App as AntdApp } from 'antd'
 import Header from '@/layouts/Header/Header'
 import Main from '@/layouts/Main/Main'
 
-function App (): JSX.Element {
+function App(): JSX.Element {
   return (
     <AntdApp>
       <Layout>

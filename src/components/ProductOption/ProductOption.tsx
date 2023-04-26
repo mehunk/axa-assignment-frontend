@@ -14,11 +14,8 @@ const Option = styled.div<OptionProps>`
   height: 500px;
   width: 400px;
   border-radius: 8px;
-  box-shadow: ${
-    (props: OptionProps) => props.selected
-      ? '0 0 0 2px #1890ff'
-      : '0 0 8px 0 rgba(0, 0, 0, 0.1)'
-    };
+  box-shadow: ${(props: OptionProps) =>
+    props.selected ? '0 0 0 2px #1890ff' : '0 0 8px 0 rgba(0, 0, 0, 0.1)'};
   cursor: pointer;
 `
 
@@ -37,33 +34,19 @@ const OptionBody = styled.div`
   padding: 16px;
 `
 
-function ProductOption ({
-  product,
-  selected = false
-}: Props): JSX.Element {
+function ProductOption({ product, selected = false }: Props): JSX.Element {
   return (
-    <Option
-      selected={selected}
-      data-testid="product-option"
-    >
+    <Option selected={selected} data-testid="product-option">
       <OptionHeader>
-        <Typography.Title level={3}>
-          {product.name}
-        </Typography.Title>
-        <Typography.Title level={2}>
-          ${product.premium}
-        </Typography.Title>
+        <Typography.Title level={3}>{product.name}</Typography.Title>
+        <Typography.Title level={2}>${product.premium}</Typography.Title>
         <Typography.Text>
-          <span>deductible ${product.deductible}</span>
-          ·
-          <span>policy limit ${product.policyLimit}</span>
-          ·
+          <span>deductible ${product.deductible}</span>·
+          <span>policy limit ${product.policyLimit}</span>·
           <span>{product.days} days</span>
         </Typography.Text>
       </OptionHeader>
-      <OptionBody>
-        Detail Description
-      </OptionBody>
+      <OptionBody>Detail Description</OptionBody>
     </Option>
   )
 }

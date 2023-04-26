@@ -34,12 +34,13 @@ const initFields = [
   value: ''
 }))
 
-function InsuranceQuote (): JSX.Element {
+function InsuranceQuote(): JSX.Element {
   const { message } = App.useApp()
   const navigate = useNavigate()
   const [form] = Form.useForm()
   const [currentStep, setCurrentStep] = useState<InsuranceQuoteCurrentStep>(0)
-  const [fields, setFields] = useState<InsuranceQuoteFormFieldData[]>(initFields)
+  const [fields, setFields] =
+    useState<InsuranceQuoteFormFieldData[]>(initFields)
   const selectedVehicleTypeId = form.getFieldValue('vehicleTypeId')
   const selectedProductId = form.getFieldValue('productId')
   const { data: vehicleTypes } = useQuery({
@@ -51,7 +52,7 @@ function InsuranceQuote (): JSX.Element {
     queryKey: ['products', selectedVehicleTypeId],
     queryFn: async () => await getProducts(selectedVehicleTypeId),
     initialData: [],
-    enabled: Boolean(selectedVehicleTypeId)
+    enabled: !!selectedVehicleTypeId
   })
   const vehicleMap = keyBy(vehicleTypes, 'id')
   const productMap = keyBy(products, 'id')
@@ -69,7 +70,8 @@ function InsuranceQuote (): JSX.Element {
       startDate: form.getFieldValue('startDate').format('YYYY-MM-DD')
     }
 
-    ;['vehicleTypeId',
+    ;[
+      'vehicleTypeId',
       'productId',
       'customerName',
       'customerPhone',
@@ -78,7 +80,8 @@ function InsuranceQuote (): JSX.Element {
       'vehicleModel',
       'licensePlate'
     ].forEach((key) => {
-      createInsuranceQuoteDto[key as keyof (CreateInsuranceQuoteDto)] = form.getFieldValue(key)
+      createInsuranceQuoteDto[key as keyof CreateInsuranceQuoteDto] =
+        form.getFieldValue(key)
     })
 
     mutation.mutate(createInsuranceQuoteDto as CreateInsuranceQuoteDto)
@@ -86,7 +89,7 @@ function InsuranceQuote (): JSX.Element {
 
   return (
     <StyledInsuranceQuote>
-      <QuoteStep currentStep={currentStep}/>
+      <QuoteStep currentStep={currentStep} />
       {currentStep === InsuranceQuoteCurrentStep.Basic && (
         <BasicForm
           vehicleTypes={vehicleTypes}
@@ -100,24 +103,23 @@ function InsuranceQuote (): JSX.Element {
           }}
         />
       )}
-      {
-        currentStep === InsuranceQuoteCurrentStep.ProductSelection && (
-          <ProductSelection
-            products={products}
-            selectedProductId={selectedProductId}
-            onSelectProduct={(productId) => {
-              form.setFieldsValue({ productId })
-              // manually trigger re-render
-              setFields([...fields])
-            }}
-            onNextStep={() => {
-              setCurrentStep(2)
-            }}
-          />
-        )
-      }
-      {
-        currentStep === InsuranceQuoteCurrentStep.Preview && Boolean(selectedVehicleTypeId) && Boolean(selectedProductId) && (
+      {currentStep === InsuranceQuoteCurrentStep.ProductSelection && (
+        <ProductSelection
+          products={products}
+          selectedProductId={selectedProductId}
+          onSelectProduct={(productId) => {
+            form.setFieldsValue({ productId })
+            // manually trigger re-render
+            setFields([...fields])
+          }}
+          onNextStep={() => {
+            setCurrentStep(2)
+          }}
+        />
+      )}
+      {currentStep === InsuranceQuoteCurrentStep.Preview &&
+        selectedVehicleTypeId &&
+        selectedProductId && (
           <InsuranceQuotePreview
             form={form}
             vehicleType={vehicleMap[selectedVehicleTypeId]}
@@ -125,8 +127,7 @@ function InsuranceQuote (): JSX.Element {
             loading={mutation.isLoading}
             onSubmit={onSubmit}
           />
-        )
-      }
+        )}
     </StyledInsuranceQuote>
   )
 }

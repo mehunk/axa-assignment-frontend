@@ -1,6 +1,6 @@
 interface InsuranceQuoteFormFieldData {
   name: string | number | Array<string | number>
-  value?: any
+  value?: string | number
   touched?: boolean
   validating?: boolean
   errors?: string[]
@@ -22,4 +22,7 @@ interface InsuranceQuote {
   paid: boolean
 }
 
-type CreateInsuranceQuoteDto = Omit<InsuranceQuote, 'id' | 'endDate' | 'policyNumber' | 'paid'>
+type CreateInsuranceQuoteDto = Omit<
+  InsuranceQuote,
+  'id' | 'endDate' | 'policyNumber' | 'paid'
+>

@@ -11,7 +11,7 @@ interface Props {
   currentStep: InsuranceQuoteCurrentStep
 }
 
-function QuoteStep ({ currentStep }: Props): JSX.Element {
+function QuoteStep({ currentStep }: Props): JSX.Element {
   const items = [
     {
       title: 'Basic',
@@ -27,12 +27,7 @@ function QuoteStep ({ currentStep }: Props): JSX.Element {
     }
   ]
 
-  return (
-    <StyledSteps
-      current={currentStep}
-      items={items}
-    />
-  )
+  return <StyledSteps current={currentStep} items={items} />
 }
 
 export default QuoteStep

@@ -1,4 +1,10 @@
-import { render, screen, renderHook, userEvent, waitFor } from '@/test-utils.tsx'
+import {
+  render,
+  screen,
+  renderHook,
+  userEvent,
+  waitFor
+} from '@/test-utils.tsx'
 import { Form, type FormInstance } from 'antd'
 import { vi, type Mock } from 'vitest'
 import dayjs from 'dayjs'
@@ -51,7 +57,11 @@ describe('BasicForm', () => {
   let onNextStep: Mock
 
   beforeEach(() => {
-    ({ result: { current: [form] } } = renderHook(() => Form.useForm()))
+    ;({
+      result: {
+        current: [form]
+      }
+    } = renderHook(() => Form.useForm()))
     onChange = vi.fn()
     onNextStep = vi.fn()
   })
@@ -89,14 +99,26 @@ describe('BasicForm', () => {
     )
 
     await userEvent.click(screen.getByRole('button', { name: 'Next' }))
-    expect(screen.getByText('Please select a vehicle type!')).toBeInTheDocument()
+    expect(
+      screen.getByText('Please select a vehicle type!')
+    ).toBeInTheDocument()
     expect(screen.getByText('Please input your name!')).toBeInTheDocument()
-    expect(screen.getByText('Please input your phone number!')).toBeInTheDocument()
-    expect(screen.getByText('Please input your email address!')).toBeInTheDocument()
+    expect(
+      screen.getByText('Please input your phone number!')
+    ).toBeInTheDocument()
+    expect(
+      screen.getByText('Please input your email address!')
+    ).toBeInTheDocument()
     expect(screen.getByText('Please input your age!')).toBeInTheDocument()
-    expect(screen.getByText('Please input your vehicle model!')).toBeInTheDocument()
-    expect(screen.getByText('Please input your license plate!')).toBeInTheDocument()
-    expect(screen.getByText('Please select the start date for the insurance quote!')).toBeInTheDocument()
+    expect(
+      screen.getByText('Please input your vehicle model!')
+    ).toBeInTheDocument()
+    expect(
+      screen.getByText('Please input your license plate!')
+    ).toBeInTheDocument()
+    expect(
+      screen.getByText('Please select the start date for the insurance quote!')
+    ).toBeInTheDocument()
     // TODO: fix this test
     expect(onNextStep).not.toHaveBeenCalled()
   })
@@ -168,6 +190,8 @@ describe('BasicForm', () => {
     )
 
     await userEvent.click(screen.getByRole('button', { name: 'Next' }))
-    await waitFor(() => { expect(onNextStep).toHaveBeenCalled() })
+    await waitFor(() => {
+      expect(onNextStep).toHaveBeenCalled()
+    })
   })
 })
