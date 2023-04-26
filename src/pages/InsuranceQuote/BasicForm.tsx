@@ -129,7 +129,7 @@ function BasicForm ({ onChange, fields, onNextStep, form, vehicleTypes }: Props)
       </Form.Item>
 
       <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-        <Button type="primary" htmlType="submit" onClick={nextStep}>
+        <Button type="primary" onClick={nextStep}>
           Next
         </Button>
       </Form.Item>

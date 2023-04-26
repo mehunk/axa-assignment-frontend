@@ -1,14 +1,16 @@
-import { Layout } from 'antd'
+import { Layout, App as AntdApp } from 'antd'
 
 import Header from '@/layouts/Header/Header'
 import Main from '@/layouts/Main/Main'
 
-function App () {
+function App (): JSX.Element {
   return (
-    <Layout>
-      <Header />
-      <Main />
-    </Layout>
+    <AntdApp>
+      <Layout>
+        <Header />
+        <Main />
+      </Layout>
+    </AntdApp>
   )
 }
 

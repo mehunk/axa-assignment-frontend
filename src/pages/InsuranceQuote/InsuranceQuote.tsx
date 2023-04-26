@@ -1,7 +1,7 @@
 import { keyBy } from 'lodash-es'
 import { useState } from 'react'
 import styled from 'styled-components'
-import { Form } from 'antd'
+import { Form, App } from 'antd'
 import { useNavigate } from 'react-router-dom'
 import { useQuery, useMutation } from '@tanstack/react-query'
 
@@ -35,6 +35,7 @@ const initFields = [
 }))
 
 function InsuranceQuote (): JSX.Element {
+  const { message } = App.useApp()
   const navigate = useNavigate()
   const [form] = Form.useForm()
   const [currentStep, setCurrentStep] = useState<InsuranceQuoteCurrentStep>(0)
@@ -56,7 +57,11 @@ function InsuranceQuote (): JSX.Element {
   const productMap = keyBy(products, 'id')
 
   const mutation = useMutation({
-    mutationFn: createInsuranceQuote
+    mutationFn: createInsuranceQuote,
+    onSuccess: (data) => {
+      void message.success('Insurance quote created successfully!')
+      navigate(`/insurance-quotes/${data.id}/payment`)
+    }
   })
 
   const onSubmit = (): void => {
@@ -71,16 +76,12 @@ function InsuranceQuote (): JSX.Element {
       'customerEmail',
       'customerAge',
       'vehicleModel',
-      'licensePlate',
-      'startDate'
+      'licensePlate'
     ].forEach((key) => {
       createInsuranceQuoteDto[key as keyof (CreateInsuranceQuoteDto)] = form.getFieldValue(key)
     })
 
     mutation.mutate(createInsuranceQuoteDto as CreateInsuranceQuoteDto)
-  }
-  if (mutation.isSuccess) {
-    navigate(`/insurance-quotes/${mutation.data.id}/payment`)
   }
 
   return (
