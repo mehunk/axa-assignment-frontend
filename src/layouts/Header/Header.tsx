@@ -1,4 +1,6 @@
 import styled from 'styled-components'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { Menu } from 'antd'
 import FixedHeader from '@/components/FixedHeader/FixedHeader'
 
 const LogoPlaceholder = styled.div`
@@ -10,9 +12,25 @@ const LogoPlaceholder = styled.div`
 `
 
 function Header(): JSX.Element {
+  const { pathname } = useLocation()
+  const navigate = useNavigate()
+
   return (
     <FixedHeader>
       <LogoPlaceholder />
+      <Menu
+        theme="dark"
+        mode="horizontal"
+        defaultSelectedKeys={[pathname]}
+        selectedKeys={[pathname]}
+        items={[
+          {
+            key: '/insurance-quotes/new',
+            label: 'Insurance Quote'
+          }
+        ]}
+        onClick={({ key }) => navigate(key)}
+      />
     </FixedHeader>
   )
 }
