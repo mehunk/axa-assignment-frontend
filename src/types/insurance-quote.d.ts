@@ -1,6 +1,7 @@
+/// <reference types="dayjs" />
 interface InsuranceQuoteFormFieldData {
   name: string | number | Array<string | number>
-  value?: string | number
+  value?: string | number | dayjs.Dayjs
   touched?: boolean
   validating?: boolean
   errors?: string[]
